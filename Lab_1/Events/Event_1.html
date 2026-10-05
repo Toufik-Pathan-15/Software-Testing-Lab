@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everest Camp Trek</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            background: #000;
+            color: #fff;
+
+            font-family: "DM Sans", sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px 15px;
+        }
+
+
+        /* Main Mobile Card */
+
+        .container {
+            width: 100%;
+            max-width: 70%;
+
+            background: #050607;
+
+            border-radius: 35px;
+
+            overflow: hidden;
+
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7);
+        }
+
+
+        /* Hero */
+
+        .hero {
+            width: 100%;
+            height: 500px;
+
+            overflow: hidden;
+        }
+
+
+        .hero img {
+            width: 100%;
+            height: 500px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* Content */
+
+        .content {
+            padding: 28px 25px 30px;
+        }
+
+
+        /* Heading */
+
+        h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 38px;
+
+            line-height: 1.15;
+
+            margin-bottom: 18px;
+
+            color: white;
+        }
+
+
+        /* Description */
+
+        .description {
+            color: #858585;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* Hide checkbox */
+
+        #details-toggle {
+            display: none;
+        }
+
+
+        /* Details button */
+
+        .details-btn {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+
+            height: 55px;
+
+            border-radius: 35px;
+
+            background: #ff0071;
+
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+
+            box-shadow: 0 8px 25px rgba(255, 0, 113, 0.25);
+        }
+
+
+        .details-btn:hover {
+            transform: translateY(-2px);
+
+            background: #ff1680;
+        }
+
+
+        .hide-text {
+            display: none;
+        }
+
+
+        /* Details initially hidden */
+
+        .details {
+            max-height: 0;
+
+            overflow: hidden;
+
+            opacity: 0;
+
+            transform: translateY(-15px);
+
+            transition:
+                max-height 0.8s ease,
+                opacity 0.5s ease,
+                transform 0.5s ease;
+        }
+
+
+        /* Show details */
+
+        #details-toggle:checked ~ .details {
+            max-height: 2500px;
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+            margin-top: 30px;
+        }
+
+
+        /* Change button text */
+
+        #details-toggle:checked ~ .details-btn .show-text {
+            display: none;
+        }
+
+
+        #details-toggle:checked ~ .details-btn .hide-text {
+            display: block;
+        }
+
+
+        /* Location */
+
+        .location {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #b5b5b5;
+
+            font-size: 15px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .pin {
+            color: #ff0071;
+
+            font-size: 20px;
+        }
+
+
+        .dot {
+            color: #666;
+        }
+
+
+        /* Rating */
+
+        .rating {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 30px;
+
+            color: #aaa;
+        }
+
+
+        .rating strong {
+            color: white;
+
+            font-size: 18px;
+        }
+
+
+        .star {
+            color: #ff0071;
+
+            font-size: 23px;
+        }
+
+
+        /* Sections */
+
+        section {
+            margin-bottom: 30px;
+        }
+
+
+        h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 27px;
+
+            margin-bottom: 15px;
+
+            color: white;
+        }
+
+
+        section p {
+            color: #a8a8a8;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+        }
+
+
+        /* Information box */
+
+        .info-box {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1px
+                1fr
+                1px
+                1fr
+                1px
+                1fr;
+
+            align-items: center;
+
+            padding: 20px 8px;
+
+            border: 1px solid #25282d;
+
+            border-radius: 20px;
+
+            margin-bottom: 35px;
+
+            background: #0a0c0e;
+        }
+
+
+        .info {
+            text-align: center;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .info .icon {
+            color: #ff0071;
+
+            font-size: 20px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .info strong {
+            color: white;
+
+            font-size: 12px;
+        }
+
+
+        .info small {
+            color: #777;
+
+            font-size: 9px;
+        }
+
+
+        .divider {
+            height: 55px;
+
+            background: #292c32;
+        }
+
+
+        /* Highlights */
+
+        .highlights {
+            border-top: 1px solid #24272b;
+
+            padding-top: 25px;
+        }
+
+
+        .highlights ul {
+            list-style: none;
+        }
+
+
+        .highlights li {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #bcbcbc;
+
+            font-size: 14px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .highlights li span {
+            min-width: 25px;
+
+            height: 25px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border-radius: 50%;
+
+            background: #ff0071;
+
+            color: white;
+
+            font-weight: bold;
+        }
+
+
+        /* Price */
+
+        .price-box {
+            border-top: 1px solid #25282d;
+
+            padding-top: 22px;
+
+            margin-top: 25px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .price-box span {
+            color: #777;
+
+            font-size: 13px;
+        }
+
+
+        .price-box strong {
+            font-size: 28px;
+
+            margin-left: 8px;
+
+            color: white;
+        }
+
+
+        .price-box small {
+            color: #777;
+        }
+
+
+        /* Book button */
+
+        .book-btn {
+            width: 100%;
+
+            height: 58px;
+
+            border: none;
+
+            border-radius: 35px;
+
+            background: #ff0071;
+
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+
+        .book-btn:hover {
+            background: #ff1680;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 30px rgba(255, 0, 113, 0.3);
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 0;
+            }
+
+            .container {
+                min-height: 100vh;
+
+                border-radius: 0;
+            }
+
+            .hero {
+                height: 280px;
+            }
+
+            .content {
+                padding: 25px 22px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .info-box {
+                padding: 16px 3px;
+            }
+
+            .info strong {
+                font-size: 11px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Hero Image -->
+        <div class="hero">
+
+            <!-- Replace everest.jpg with your image -->
+            <img src="../img/img1.jfif" alt="Everest Camp Trek">
+
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="content">
+
+            <h1>Everest Camp Trek</h1>
+
+            <p class="description">
+                Everest base camp trek is without a doubt
+                one of the most renowned travel
+                destinations in the world.
+            </p>
+
+
+            <!-- CSS Toggle -->
+            <input type="checkbox" id="details-toggle">
+
+            <label for="details-toggle" class="details-btn">
+                <span class="show-text">All Details</span>
+                <span class="hide-text">Hide Details</span>
+            </label>
+
+
+            <!-- Details Section -->
+            <div class="details">
+
+                <!-- Location -->
+                <div class="location">
+                    <span class="pin">●</span>
+                    <span>Nepal</span>
+                    <span class="dot">•</span>
+                    <span>Everest Base Camp</span>
+                </div>
+
+
+                <!-- Rating -->
+                <div class="rating">
+                    <span class="star">★</span>
+                    <strong>4.9</strong>
+                    <span>(128 reviews)</span>
+                </div>
+
+
+                <!-- About -->
+                <section>
+                    <h2>About the Trek</h2>
+
+                    <p>
+                        The Everest Base Camp trek is a once-in-a-lifetime
+                        adventure that takes you through stunning Himalayan
+                        landscapes, traditional Sherpa villages and finally
+                        to the base of the world's highest peak — Mount Everest.
+                    </p>
+                </section>
+
+
+                <!-- Trek Information -->
+                <div class="info-box">
+
+                    <div class="info">
+                        <span class="icon">📅</span>
+                        <strong>12 Days</strong>
+                        <small>Duration</small>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="info">
+                        <span class="icon">🌙</span>
+                        <strong>11 Nights</strong>
+                        <small>Accommodation</small>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="info">
+                        <span class="icon">⛰</span>
+                        <strong>Moderate</strong>
+                        <small>Difficulty</small>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="info">
+                        <span class="icon">📅</span>
+                        <strong>Mar–May</strong>
+                        <small>Best Season</small>
+                    </div>
+
+                </div>
+
+
+                <!-- Trek Description -->
+                <section>
+                    <h2>About the Journey</h2>
+
+                    <p>
+                        This 12-day trek takes you from Lukla to Everest
+                        Base Camp (5,364 m) through breathtaking valleys,
+                        high suspension bridges and iconic Sherpa villages.
+                        It is a challenging yet rewarding journey, perfect
+                        for adventure seekers and nature lovers.
+                    </p>
+                </section>
+
+
+                <!-- Highlights -->
+                <section class="highlights">
+
+                    <h2>Highlights</h2>
+
+                    <ul>
+                        <li>
+                            <span>✓</span>
+                            Stand at the base of Mount Everest (5,364 m)
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Explore Sherpa culture and traditional villages
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Cross iconic suspension bridges
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Breathtaking Himalayan views
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Expert guides and full support
+                        </li>
+                    </ul>
+
+                </section>
+
+
+                <!-- Price -->
+                <div class="price-box">
+                    <span>Starting from</span>
+                    <strong>$1,299</strong>
+                    <small>/ person</small>
+                </div>
+
+
+                <!-- Book Button -->
+                <button class="book-btn">
+                    Book This Trek
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
